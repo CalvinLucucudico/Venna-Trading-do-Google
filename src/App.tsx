@@ -267,7 +267,7 @@ export default function App() {
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className="fixed top-6 w-full z-50 px-6 flex justify-center"
       >
-        <div className="w-full max-w-7xl bg-background/60 backdrop-blur-xl border border-white/10 rounded-xl px-6 h-16 flex items-center justify-between shadow-2xl">
+        <div className="w-full max-w-7xl bg-background/60 backdrop-blur-xl border border-white/10 rounded-2xl px-6 h-16 flex items-center justify-between shadow-2xl">
           <Logo />
 
           <div className="hidden md:flex items-center gap-8">
@@ -380,7 +380,7 @@ export default function App() {
           transition={{ duration: 1, delay: 0.4 }}
           className="w-full max-w-6xl mx-auto mt-24 px-6 relative z-20"
         >
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl py-8 px-8 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl py-8 px-8 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse-ring" />
               <span className="text-xs font-mono tracking-widest uppercase text-green-400">Operations Active</span>
@@ -445,7 +445,7 @@ export default function App() {
                   { title: 'Trust & Transparency', desc: 'Every supplier verified, every shipment tracked, every contract documented.', icon: <ShieldCheck className="w-5 h-5 text-primary" /> },
                   { title: 'Local Intelligence', desc: 'On the ground in China, deeply connected across global markets.', icon: <Globe2 className="w-5 h-5 text-primary" /> }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                  <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                     <div className="mt-1">{item.icon}</div>
                     <div>
                       <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
@@ -470,7 +470,7 @@ export default function App() {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 bg-background/80 backdrop-blur-md border border-white/10 p-4 rounded-xl">
+                <div className="absolute bottom-6 left-6 right-6 bg-background/80 backdrop-blur-md border border-white/10 p-4 rounded-2xl">
                   <div className="text-xs font-mono text-primary uppercase tracking-widest mb-1">Based in Shenzhen</div>
                   <div className="font-semibold text-foreground">Operational since 2026</div>
                 </div>
@@ -512,7 +512,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-background border border-white/10 p-8 rounded-xl relative overflow-hidden group hover:border-destructive/50 transition-colors"
+                className="bg-background border border-white/10 p-8 rounded-2xl relative overflow-hidden group hover:border-destructive/50 transition-colors"
               >
                 <div className="text-6xl font-bold text-white/5 absolute top-4 right-4 group-hover:text-destructive/10 transition-colors">{item.num}</div>
                 <h3 className="text-xl font-semibold mb-4 text-foreground relative z-10">{item.title}</h3>
@@ -521,7 +521,7 @@ export default function App() {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto text-center p-8 rounded-xl bg-primary/5 border border-primary/20">
+          <div className="max-w-4xl mx-auto text-center p-8 rounded-2xl bg-primary/5 border border-primary/20">
             <p className="text-xl md:text-2xl font-serif italic text-foreground/90 leading-relaxed">
               "VENA exists because we lived this problem. We saw businesses lose money, time and trust. So we built the solution — from inside China."
             </p>
@@ -543,9 +543,9 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 onClick={() => setActiveService(service)}
-                className="group p-8 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 cursor-pointer flex flex-col h-full"
+                className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 cursor-pointer flex flex-col h-full"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-foreground">{service.title}</h3>
@@ -575,9 +575,9 @@ export default function App() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="p-4 rounded-xl bg-background border border-white/10 flex items-center gap-4 hover:border-primary/50 hover:bg-primary/5 transition-colors group"
+                className="p-4 rounded-2xl bg-background border border-white/10 flex items-center gap-4 hover:border-primary/50 hover:bg-primary/5 transition-colors group"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                   {sector.icon}
                 </div>
                 <span className="font-medium text-foreground text-sm">{sector.name}</span>
@@ -607,7 +607,7 @@ export default function App() {
                   { val: '12+', label: 'Sectors' },
                   { val: '24h', label: 'Response Time' }
                 ].map((stat, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10 border-t-2 border-t-primary">
+                  <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/10 border-t-2 border-t-primary">
                     <div className="text-2xl font-bold text-foreground mb-1">{stat.val}</div>
                     <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{stat.label}</div>
                   </div>
@@ -623,7 +623,7 @@ export default function App() {
                 className="col-span-2 rounded-xl overflow-hidden border border-white/10 aspect-[16/9] relative"
               >
                 <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661726/Interior_f%C3%A1brica_chinesa_v1_vng90w.webp" alt="Factory" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-widest border border-white/10">Factory · Shenzhen</div>
+                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-2xl text-xs font-mono uppercase tracking-widest border border-white/10">Factory · Shenzhen</div>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -669,7 +669,7 @@ export default function App() {
                 transition={{ delay: i * 0.1 }}
                 className="relative z-10 flex flex-col items-center text-center group"
               >
-                <div className="w-24 h-24 rounded-xl bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary group-hover:bg-primary/5 transition-colors shadow-xl">
+                <div className="w-24 h-24 rounded-2xl bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary group-hover:bg-primary/5 transition-colors shadow-xl">
                   <span className="text-3xl font-bold text-primary opacity-50 group-hover:opacity-100 transition-opacity">{step.number}</span>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-foreground">{step.title}</h3>
@@ -693,14 +693,14 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-xl bg-white/5 border border-white/10 flex flex-col"
+                className="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col"
               >
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, j) => <span key={j} className="text-primary text-lg">★</span>)}
                 </div>
                 <p className="text-foreground/90 italic mb-8 flex-grow leading-relaxed">"{t.content}"</p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">
                     {t.name.substring(0, 2)}
                   </div>
                   <div>
@@ -721,7 +721,7 @@ export default function App() {
           
           <div className="space-y-4">
             {FAQS.map((item, i) => (
-              <details key={i} className="group bg-background border border-white/10 rounded-xl overflow-hidden">
+              <details key={i} className="group bg-background border border-white/10 rounded-2xl overflow-hidden">
                 <summary className="p-6 cursor-pointer flex items-center justify-between font-semibold list-none hover:bg-white/5 transition-colors">
                   <span className="text-foreground">{item.q}</span>
                   <ChevronDown className="w-5 h-5 text-muted-foreground group-open:rotate-180 transition-transform" />
@@ -752,7 +752,7 @@ export default function App() {
                   { icon: <Phone className="w-5 h-5" />, text: 'Response within 24 business hours' }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 text-muted-foreground">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                       {item.icon}
                     </div>
                     <span>{item.text}</span>
@@ -761,26 +761,26 @@ export default function App() {
               </div>
             </div>
             
-            <div className="bg-white/5 border border-white/10 rounded-xl p-8 md:p-10">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
               <form className="space-y-6" onSubmit={handleContactSubmit}>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Full Name</label>
-                    <input type="text" name="name" required className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Your name" />
+                    <input type="text" name="name" required className="w-full bg-background border border-white/10 rounded-2xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Your name" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Company</label>
-                    <input type="text" name="company" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Company name" />
+                    <input type="text" name="company" className="w-full bg-background border border-white/10 rounded-2xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Company name" />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Email</label>
-                    <input type="email" name="email" required className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="your@email.com" />
+                    <input type="email" name="email" required className="w-full bg-background border border-white/10 rounded-2xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="your@email.com" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Country</label>
-                    <input type="text" name="country" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="e.g. Angola" />
+                    <input type="text" name="country" className="w-full bg-background border border-white/10 rounded-2xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="e.g. Angola" />
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -789,7 +789,7 @@ export default function App() {
                     name="message"
                     required
                     rows={4} 
-                    className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none" 
+                    className="w-full bg-background border border-white/10 rounded-2xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none" 
                     placeholder="Tell us about your project..."
                     value={contactMessage}
                     onChange={(e) => setContactMessage(e.target.value)}
@@ -814,10 +814,10 @@ export default function App() {
                 Your operational partner bridging China and the world through trust, process and execution.
               </p>
               <div className="flex gap-3">
-                <a href="https://linkedin.com/company/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Linkedin className="w-4 h-4" /></a>
-                <a href="https://instagram.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Instagram className="w-4 h-4" /></a>
-                <a href="https://facebook.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Facebook className="w-4 h-4" /></a>
-                <a href="https://x.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Twitter className="w-4 h-4" /></a>
+                <a href="https://linkedin.com/company/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Linkedin className="w-4 h-4" /></a>
+                <a href="https://instagram.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Instagram className="w-4 h-4" /></a>
+                <a href="https://facebook.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Facebook className="w-4 h-4" /></a>
+                <a href="https://x.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Twitter className="w-4 h-4" /></a>
               </div>
             </div>
             
@@ -863,16 +863,16 @@ export default function App() {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="relative w-full max-w-2xl bg-background border border-white/10 p-8 md:p-12 rounded-xl shadow-2xl overflow-hidden"
+              className="relative w-full max-w-2xl bg-background border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl overflow-hidden"
             >
               <button 
                 onClick={() => setActiveService(null)} 
-                className="absolute top-6 right-6 w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors"
+                className="absolute top-6 right-6 w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-8">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-8">
                 {activeService.icon}
               </div>
               
@@ -881,7 +881,7 @@ export default function App() {
                 {activeService.description}
               </p>
               
-              <div className="space-y-4 mb-10 bg-white/5 p-6 rounded-xl border border-white/5">
+              <div className="space-y-4 mb-10 bg-white/5 p-6 rounded-2xl border border-white/5">
                 <h4 className="text-primary font-mono text-xs uppercase tracking-widest mb-4">What's included:</h4>
                 {activeService.details.map((detail, i) => (
                   <div key={i} className="flex items-center gap-3">
