@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useSpring, useMotionValueEvent } from 'motion/react';
 import { 
   ArrowRight, CheckCircle2, Globe2, ShieldCheck, Zap, Users, BarChart3, Search, 
   FileText, Truck, MessageSquare, ChevronDown, Menu, X, Building2, Factory, 
   HardHat, Cpu, Utensils, Shirt, Stethoscope, Car, Package, Armchair, Shield, 
-  FlaskConical, Linkedin, Instagram, Facebook, Mail, MapPin, Phone, Play
+  FlaskConical, Linkedin, Instagram, Facebook, Twitter, Mail, MapPin, Phone, Play
 } from 'lucide-react';
+import ChatWidget from './components/ChatWidget';
 
 // --- Types ---
 interface Service {
@@ -99,22 +100,22 @@ const PROCESS_STEPS = [
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    name: "J.M.",
-    role: "Construction Sector",
-    location: "Global Importer",
-    content: "VENA transformed our way of importing. We used to fear sending capital to China; today we have a partner who verifies everything on the ground."
+    name: "Carlos Mendes",
+    role: "Procurement Director",
+    location: "Horizonte Construction, Angola",
+    content: "Before Vena, we lost sleep wondering if the materials would arrive with the quality we paid for. Having someone in Shenzhen who actually goes to the factory and inspects the goods before loading changed our entire operation."
   },
   {
-    name: "A.O.",
-    role: "Tech Distributor",
-    location: "International Distributor",
-    content: "Quality control in Shenzhen is the game-changer. We receive exactly what we ordered, with no unpleasant surprises upon arrival."
+    name: "Ricardo Silva",
+    role: "CEO",
+    location: "TechMundo Distribution, Brazil",
+    content: "The hardest part of importing electronics isn't finding a supplier, it's finding one that won't cut corners on the second batch. Vena audited factories for us and saved us from a $100k mistake. I don't ship a single container without them now."
   },
   {
-    name: "Industrial Group",
+    name: "Amina Diop",
     role: "Operations Manager",
-    location: "Multinational Operations",
-    content: "Total transparency. The production reports give us the security needed to plan our sales months in advance."
+    location: "AgriTech Solutions, Senegal",
+    content: "Communicating with manufacturers used to be a nightmare due to time zones and language barriers. Vena's team took over the negotiation for our machinery, secured better payment terms, and handled all the logistics straight to Dakar."
   }
 ];
 
@@ -147,7 +148,7 @@ const Button = ({
   className = '', 
   ...props 
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'outline' | 'ghost' }) => {
-  const baseStyles = "relative px-6 py-3 rounded-full font-medium transition-all duration-300 overflow-hidden group flex items-center justify-center gap-2 active:scale-95 text-sm";
+  const baseStyles = "relative px-6 py-3 rounded-xl font-medium transition-all duration-300 overflow-hidden group flex items-center justify-center gap-2 active:scale-95 text-sm";
   const variants = {
     primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20",
     outline: "border border-primary/30 text-primary hover:border-primary hover:bg-primary/5",
@@ -159,7 +160,7 @@ const Button = ({
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
       className={`${baseStyles} ${variants[variant]} ${className}`} 
-      {...props}
+      {...(props as any)}
     >
       <span className="relative z-10 flex items-center gap-2">{children}</span>
     </motion.button>
@@ -196,12 +197,57 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [contactMessage, setContactMessage] = useState('');
-  const { scrollYProgress } = useScroll();
+  const [isNavHidden, setIsNavHidden] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { scrollYProgress, scrollY } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > 150 && latest > previous) {
+      setIsNavHidden(true);
+    } else {
+      setIsNavHidden(false);
+    }
+  });
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      // IMPORTANT: Replace 'YOUR_FORM_ID' with your actual Formspree ID
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        form.reset();
+        setContactMessage('');
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        alert('Oops! There was a problem submitting your form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Oops! There was a problem submitting your form. Please check your connection.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground font-sans overflow-x-hidden">
@@ -212,8 +258,16 @@ export default function App() {
       />
 
       {/* Navigation */}
-      <nav className="fixed top-6 w-full z-50 px-6 flex justify-center">
-        <div className="w-full max-w-6xl bg-background/60 backdrop-blur-xl border border-white/10 rounded-full px-6 h-16 flex items-center justify-between shadow-2xl">
+      <motion.nav 
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: "-150%" }
+        }}
+        animate={isNavHidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="fixed top-6 w-full z-50 px-6 flex justify-center"
+      >
+        <div className="w-full max-w-7xl bg-background/60 backdrop-blur-xl border border-white/10 rounded-xl px-6 h-16 flex items-center justify-between shadow-2xl">
           <Logo />
 
           <div className="hidden md:flex items-center gap-8">
@@ -239,7 +293,7 @@ export default function App() {
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -326,7 +380,7 @@ export default function App() {
           transition={{ duration: 1, delay: 0.4 }}
           className="w-full max-w-6xl mx-auto mt-24 px-6 relative z-20"
         >
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl py-8 px-8 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl py-8 px-8 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse-ring" />
               <span className="text-xs font-mono tracking-widest uppercase text-green-400">Operations Active</span>
@@ -408,7 +462,7 @@ export default function App() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 relative group">
+              <div className="aspect-[4/5] rounded-xl overflow-hidden border border-white/10 relative group">
                 <img 
                   src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661726/Reuni%C3%A3o_executiva_Africa_Asia_mw81za.webp" 
                   alt="Business Negotiation" 
@@ -458,7 +512,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-background border border-white/10 p-8 rounded-2xl relative overflow-hidden group hover:border-destructive/50 transition-colors"
+                className="bg-background border border-white/10 p-8 rounded-xl relative overflow-hidden group hover:border-destructive/50 transition-colors"
               >
                 <div className="text-6xl font-bold text-white/5 absolute top-4 right-4 group-hover:text-destructive/10 transition-colors">{item.num}</div>
                 <h3 className="text-xl font-semibold mb-4 text-foreground relative z-10">{item.title}</h3>
@@ -467,7 +521,7 @@ export default function App() {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto text-center p-8 rounded-2xl bg-primary/5 border border-primary/20">
+          <div className="max-w-4xl mx-auto text-center p-8 rounded-xl bg-primary/5 border border-primary/20">
             <p className="text-xl md:text-2xl font-serif italic text-foreground/90 leading-relaxed">
               "VENA exists because we lived this problem. We saw businesses lose money, time and trust. So we built the solution — from inside China."
             </p>
@@ -489,7 +543,7 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 onClick={() => setActiveService(service)}
-                className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 cursor-pointer flex flex-col h-full"
+                className="group p-8 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 cursor-pointer flex flex-col h-full"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   {service.icon}
@@ -523,7 +577,7 @@ export default function App() {
                 transition={{ delay: i * 0.05 }}
                 className="p-4 rounded-xl bg-background border border-white/10 flex items-center gap-4 hover:border-primary/50 hover:bg-primary/5 transition-colors group"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                   {sector.icon}
                 </div>
                 <span className="font-medium text-foreground text-sm">{sector.name}</span>
@@ -566,17 +620,17 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="col-span-2 rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] relative"
+                className="col-span-2 rounded-xl overflow-hidden border border-white/10 aspect-[16/9] relative"
               >
                 <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661726/Interior_f%C3%A1brica_chinesa_v1_vng90w.webp" alt="Factory" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono uppercase tracking-widest border border-white/10">Factory · Shenzhen</div>
+                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-widest border border-white/10">Factory · Shenzhen</div>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="rounded-2xl overflow-hidden border border-white/10 aspect-square relative"
+                className="rounded-xl overflow-hidden border border-white/10 aspect-square relative"
               >
                 <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661727/Firefly_supervis%C3%A3o_armaz%C3%A9m_v_1_n7d6lq.webp" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </motion.div>
@@ -585,7 +639,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="rounded-2xl overflow-hidden border border-white/10 aspect-square relative"
+                className="rounded-xl overflow-hidden border border-white/10 aspect-square relative"
               >
                 <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661727/Armaz%C3%A9m_v_4_v5w8u8.webp" alt="Warehouse" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </motion.div>
@@ -615,7 +669,7 @@ export default function App() {
                 transition={{ delay: i * 0.1 }}
                 className="relative z-10 flex flex-col items-center text-center group"
               >
-                <div className="w-24 h-24 rounded-2xl bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary group-hover:bg-primary/5 transition-colors shadow-xl">
+                <div className="w-24 h-24 rounded-xl bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary group-hover:bg-primary/5 transition-colors shadow-xl">
                   <span className="text-3xl font-bold text-primary opacity-50 group-hover:opacity-100 transition-opacity">{step.number}</span>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-foreground">{step.title}</h3>
@@ -639,14 +693,14 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col"
+                className="p-8 rounded-xl bg-white/5 border border-white/10 flex flex-col"
               >
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, j) => <span key={j} className="text-primary text-lg">★</span>)}
                 </div>
                 <p className="text-foreground/90 italic mb-8 flex-grow leading-relaxed">"{t.content}"</p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">
+                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">
                     {t.name.substring(0, 2)}
                   </div>
                   <div>
@@ -698,7 +752,7 @@ export default function App() {
                   { icon: <Phone className="w-5 h-5" />, text: 'Response within 24 business hours' }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 text-muted-foreground">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                       {item.icon}
                     </div>
                     <span>{item.text}</span>
@@ -707,31 +761,33 @@ export default function App() {
               </div>
             </div>
             
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10">
-              <form className="space-y-6">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-8 md:p-10">
+              <form className="space-y-6" onSubmit={handleContactSubmit}>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Full Name</label>
-                    <input type="text" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Your name" />
+                    <input type="text" name="name" required className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Your name" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Company</label>
-                    <input type="text" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Company name" />
+                    <input type="text" name="company" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="Company name" />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Email</label>
-                    <input type="email" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="your@email.com" />
+                    <input type="email" name="email" required className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="your@email.com" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Country</label>
-                    <input type="text" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="e.g. Angola" />
+                    <input type="text" name="country" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors" placeholder="e.g. Angola" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Message / Briefing</label>
                   <textarea 
+                    name="message"
+                    required
                     rows={4} 
                     className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none" 
                     placeholder="Tell us about your project..."
@@ -739,7 +795,9 @@ export default function App() {
                     onChange={(e) => setContactMessage(e.target.value)}
                   ></textarea>
                 </div>
-                <Button className="w-full !py-4 text-sm">Send Message</Button>
+                <Button className="w-full !py-4 text-sm" disabled={isSubmitting || isSubmitted}>
+                  {isSubmitting ? 'Sending...' : isSubmitted ? 'Message Sent!' : 'Send Briefing'}
+                </Button>
               </form>
             </div>
           </div>
@@ -756,9 +814,10 @@ export default function App() {
                 Your operational partner bridging China and the world through trust, process and execution.
               </p>
               <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Linkedin className="w-4 h-4" /></a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Instagram className="w-4 h-4" /></a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Facebook className="w-4 h-4" /></a>
+                <a href="https://linkedin.com/company/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Linkedin className="w-4 h-4" /></a>
+                <a href="https://instagram.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Instagram className="w-4 h-4" /></a>
+                <a href="https://facebook.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Facebook className="w-4 h-4" /></a>
+                <a href="https://x.com/venaglobaltrading" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"><Twitter className="w-4 h-4" /></a>
               </div>
             </div>
             
@@ -804,16 +863,16 @@ export default function App() {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="relative w-full max-w-2xl bg-background border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl overflow-hidden"
+              className="relative w-full max-w-2xl bg-background border border-white/10 p-8 md:p-12 rounded-xl shadow-2xl overflow-hidden"
             >
               <button 
                 onClick={() => setActiveService(null)} 
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors"
+                className="absolute top-6 right-6 w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-8">
+              <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-8">
                 {activeService.icon}
               </div>
               
@@ -822,7 +881,7 @@ export default function App() {
                 {activeService.description}
               </p>
               
-              <div className="space-y-4 mb-10 bg-white/5 p-6 rounded-2xl border border-white/5">
+              <div className="space-y-4 mb-10 bg-white/5 p-6 rounded-xl border border-white/5">
                 <h4 className="text-primary font-mono text-xs uppercase tracking-widest mb-4">What's included:</h4>
                 {activeService.details.map((detail, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -845,6 +904,9 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Chat Widget */}
+      <ChatWidget />
     </div>
   );
 }

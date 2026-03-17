@@ -6,4 +6,4 @@ export const Response = window.Response;
 export const formDataToBlob = (formData) => {
   return new Blob([new URLSearchParams(formData).toString()]);
 };
-export default {};
+export default window.fetch;
