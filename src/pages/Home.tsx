@@ -8,7 +8,7 @@ import { About } from '../components/sections/About';
 import { Problem } from '../components/sections/Problem';
 import { Services } from '../components/sections/Services';
 import { Sectors } from '../components/sections/Sectors';
-import { ChinaPresence } from '../components/sections/ChinaPresence';
+import { GlobalReach } from '../components/sections/GlobalReach';
 import { Process } from '../components/sections/Process';
 import { Testimonials } from '../components/sections/Testimonials';
 import { FAQ } from '../components/sections/FAQ';
@@ -65,7 +65,7 @@ export default function Home() {
         <Problem />
         <Services onServiceClick={(service) => setActiveService(service)} />
         <Sectors />
-        <ChinaPresence />
+        <GlobalReach />
         <Process />
         <Testimonials />
         <FAQ />

@@ -6,14 +6,14 @@ import { PROCESS_STEPS } from '../../constants';
 export const Process = () => (
   <section id="process" className="py-24 md:py-32 bg-white/5 border-y border-white/10">
     <div className="max-w-7xl mx-auto px-6">
-      <SectionHeading subtitle="How It Works" title="Five steps to delivery." align="center" />
+      <SectionHeading subtitle="How It Works" title="Seven steps to execution." align="center" />
       <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-lg">
-        Every engagement follows the same structured process. No improvisation, no skipped steps.
+        Every engagement follows the same structured operational model. No improvisation, no skipped steps.
       </p>
       
-      <div className="grid md:grid-cols-5 gap-8 relative">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-8 relative">
         {/* Connecting Line for Desktop */}
-        <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[2px] bg-white/10 z-0" />
+        <div className="hidden xl:block absolute top-12 left-[5%] right-[5%] h-[2px] bg-white/10 z-0" />
         
         {PROCESS_STEPS.map((step, i) => (
           <motion.div 

@@ -15,7 +15,7 @@ export const Services = ({ onServiceClick }: ServicesProps) => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
         <div className="max-w-2xl">
-          <SectionHeading subtitle="What We Do" title="Six pillars of execution." />
+          <SectionHeading subtitle="What We Do" title="Execution Capabilities." />
         </div>
         <div className="lg:w-1/3">
           <CurrencyConverter />

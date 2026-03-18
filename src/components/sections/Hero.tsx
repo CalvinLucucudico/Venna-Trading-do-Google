@@ -36,20 +36,20 @@ export const Hero = () => (
         </div>
         
         <h1 className="text-5xl md:text-7xl lg:text-[7.5rem] font-semibold leading-[0.9] mb-8 tracking-tight text-foreground">
-          Where China Meets <br className="hidden md:block" />
-          <span className="italic font-normal text-muted-foreground">Africa</span> In <span className="text-primary">Trade.</span>
+          Operational Trade <br className="hidden md:block" />
+          <span className="italic font-normal text-muted-foreground">Execution</span> Built for <span className="text-primary">Global Business.</span>
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl leading-relaxed">
-          Your operational arm in Shenzhen. We source, verify, negotiate and deliver — so your container arrives with exactly what you ordered, every time.
+          Strategic sourcing, supplier verification and trade execution powered from China, delivered worldwide. We operate on the factory floor so your cargo arrives with precision.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <Button className="w-full sm:w-auto !px-8 !py-4 text-sm">
-            Start Sourcing <ArrowRight className="w-4 h-4" />
+            Initiate a Trade Operation <ArrowRight className="w-4 h-4" />
           </Button>
           <Button variant="outline" className="w-full sm:w-auto !px-8 !py-4 text-sm">
-            Explore Services
+            Our Execution Model
           </Button>
         </div>
       </motion.div>

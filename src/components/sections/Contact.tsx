@@ -46,16 +46,16 @@ export const Contact = ({ initialMessage = '' }: { initialMessage?: string }) =>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
-            <SectionHeading subtitle="Contact" title="Let's start the conversation." />
+            <SectionHeading subtitle="Contact" title="Initiate a Trade Operation." />
             <p className="text-muted-foreground text-lg mb-12">
-              Ready to optimize your supply chain in China? Our team in Shenzhen is ready to represent your interests.
+              Ready to structure your international trade operations? Our team in Shenzhen is ready to execute on your behalf.
             </p>
             
             <div className="space-y-8">
               {[
-                { icon: <Mail className="w-6 h-6" />, label: "Email", value: "ops@venaglobaltrading.com" },
-                { icon: <Phone className="w-6 h-6" />, label: "WhatsApp", value: "+86 135 1054 4452" },
-                { icon: <MapPin className="w-6 h-6" />, label: "Office", value: "Futian District, Shenzhen, China" }
+                { icon: <Mail className="w-6 h-6" />, label: "Operational Email", value: "ops@venaglobaltrading.com" },
+                { icon: <Phone className="w-6 h-6" />, label: "Direct Line / WhatsApp", value: "+86 135 1054 4452" },
+                { icon: <MapPin className="w-6 h-6" />, label: "Shenzhen HQ", value: "Futian District, Shenzhen, China" }
               ].map((item, i) => (
                 <div key={i} className="flex gap-6">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
@@ -87,30 +87,56 @@ export const Contact = ({ initialMessage = '' }: { initialMessage?: string }) =>
                   <input name="email" type="email" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="john@company.com" />
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Subject</label>
-                <select name="subject" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none">
-                  <option>Product Sourcing Inquiry</option>
-                  <option>Supplier Audit Request</option>
-                  <option>Logistics Support</option>
-                  <option>Other</option>
-                </select>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Company Name</label>
+                  <input name="company" type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Global Trade Ltd" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Country</label>
+                  <input name="country" type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="United Kingdom" />
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Type of Request</label>
+                  <select name="subject" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none">
+                    <option>Sourcing & Verification</option>
+                    <option>Operational Execution</option>
+                    <option>Logistics Coordination</option>
+                    <option>Strategic Consultancy</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Product Category</label>
+                  <input name="category" type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Solar Panels, Textiles, etc." />
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Estimated Volume (USD)</label>
+                  <input name="volume" type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. $50,000+" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Timeline</label>
+                  <input name="timeline" type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Immediate, 3 months, etc." />
+                </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Message</label>
+                <label className="text-sm font-medium text-muted-foreground">Additional Requirements</label>
                 <textarea 
                   name="message" 
-                  rows={4} 
+                  rows={3} 
                   required 
                   className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none" 
-                  placeholder="How can we help you?"
+                  placeholder="Describe your operational needs..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
               <Button type="submit" className="w-full py-4 flex items-center justify-center gap-2" disabled={isSubmitting || isSubmitted}>
-                {isSubmitting ? 'Sending...' : isSubmitted ? 'Message Sent!' : (
-                  <>Send Message <Send className="w-4 h-4" /></>
+                {isSubmitting ? 'Processing...' : isSubmitted ? 'Operation Initiated!' : (
+                  <>Initiate Operation <Send className="w-4 h-4" /></>
                 )}
               </Button>
             </form>

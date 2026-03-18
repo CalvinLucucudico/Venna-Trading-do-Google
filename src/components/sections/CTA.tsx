@@ -22,16 +22,16 @@ export const CTA = () => {
           viewport={{ once: true }}
           className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-12 md:p-20"
         >
-          <SectionHeading subtitle="Ready to Start?" title="Let's build your supply chain." align="center" />
+          <SectionHeading subtitle="Ready to Execute?" title="Structure your trade operations." align="center" />
           <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-            Stop guessing. Start executing. Join the businesses that trust VENA as their operational arm in China.
+            Stop guessing. Start executing. Join the global businesses that trust VENA as their operational arm in China.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button className="w-full sm:w-auto !px-10 !py-4 text-sm">
-              Get a Free Quote
+            <Button className="w-full sm:w-auto !px-10 !py-4 text-sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              Initiate a Trade Operation
             </Button>
-            <Button variant="outline" className="w-full sm:w-auto !px-10 !py-4 text-sm">
-              Schedule a Call
+            <Button variant="outline" className="w-full sm:w-auto !px-10 !py-4 text-sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              Consult with our Team
             </Button>
           </div>
         </motion.div>

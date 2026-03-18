@@ -57,7 +57,7 @@ export const Navbar = ({ isHidden = false }: { isHidden?: boolean }) => {
               <span>EN</span>
             </button>
             <Button variant="primary" className="!py-2.5 !px-6 text-xs uppercase tracking-widest font-bold flex items-center gap-2" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-              Contact Us <ArrowRight className="w-3.5 h-3.5" />
+              Initiate Operation <ArrowRight className="w-3.5 h-3.5" />
             </Button>
           </div>
         </div>

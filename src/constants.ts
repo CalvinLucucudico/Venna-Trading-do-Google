@@ -8,51 +8,51 @@ import { Service, Sector, Testimonial, ProcessStep } from './types';
 
 export const SERVICES: Service[] = [
   {
-    id: 'sourcing',
-    title: 'Product Sourcing',
-    description: 'Identification and selection of qualified suppliers across the entire Chinese industrial ecosystem.',
+    id: 'identification',
+    title: 'Supplier Identification',
+    description: 'We map and identify qualified manufacturers across the entire Chinese industrial ecosystem, ensuring alignment with global standards.',
     icon: React.createElement(Search, { className: "w-6 h-6" }),
-    details: ['Market mapping', 'Production capacity analysis', 'Comparative cost reports'],
+    details: ['Global market mapping', 'Production capacity analysis', 'Strategic cost structuring'],
     image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_1_kw2icw.jpg'
   },
   {
     id: 'verification',
-    title: 'Supplier Verification',
-    description: 'Rigorous due diligence and auditing of manufacturers to eliminate fraud and quality risks.',
+    title: 'Factory Verification',
+    description: 'We execute rigorous due diligence and physical audits of manufacturers to eliminate operational and quality risks.',
     icon: React.createElement(ShieldCheck, { className: "w-6 h-6" }),
-    details: ['License verification', 'Physical factory audit', 'Export history analysis'],
+    details: ['License & compliance audit', 'On-site factory inspection', 'Export history validation'],
     image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_2_wubtop.jpg'
   },
   {
-    id: 'procurement',
-    title: 'Procurement Support',
-    description: 'Full support for the purchasing process, from initial order to financial settlement.',
-    icon: React.createElement(FileText, { className: "w-6 h-6" }),
-    details: ['PO management', 'Secure payment control', 'Document compliance'],
-    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_3_xwrzkc.jpg'
+    id: 'structuring',
+    title: 'Negotiation Structuring',
+    description: 'We manage direct negotiations to secure the most favorable terms, pricing, and production priority for your operations.',
+    icon: React.createElement(Users, { className: "w-6 h-6" }),
+    details: ['Cost optimization', 'Payment term structuring', 'Local representation in Shenzhen'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661707/Conteiner_v1_yktq6m.jpg'
   },
   {
-    id: 'facilitation',
-    title: 'Trade Facilitation',
-    description: 'Smoothing the entire commercial chain, removing bureaucratic and logistical barriers.',
-    icon: React.createElement(Zap, { className: "w-6 h-6" }),
-    details: ['Process optimization', 'Customs clearance', 'International certifications'],
+    id: 'coordination',
+    title: 'Logistics Coordination',
+    description: 'We coordinate the entire supply chain, removing bureaucratic barriers and ensuring seamless international transit.',
+    icon: React.createElement(Package, { className: "w-6 h-6" }),
+    details: ['End-to-end logistics', 'Customs compliance', 'International documentation'],
     image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_4_il656j.jpg'
   },
   {
-    id: 'negotiation',
-    title: 'Negotiation & Representation',
-    description: 'Direct negotiation on behalf of the client to ensure the best terms, prices, and priority.',
-    icon: React.createElement(Users, { className: "w-6 h-6" }),
-    details: ['Cost reduction', 'Favorable payment terms', 'Local representation in Shenzhen'],
-    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661707/Conteiner_v1_yktq6m.jpg'
+    id: 'assurance',
+    title: 'Delivery Assurance',
+    description: 'We supervise production and execute pre-shipment inspections to guarantee that your cargo meets every specification.',
+    icon: React.createElement(Shield, { className: "w-6 h-6" }),
+    details: ['Production monitoring', 'Quality assurance protocols', 'Final loading supervision'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_3_xwrzkc.jpg'
   },
   {
     id: 'consultancy',
     title: 'Trade Consultancy',
-    description: 'Strategic consultancy for expansion and structuring of international operations.',
+    description: 'We provide strategic intelligence for structuring large-scale international trade operations and market expansion.',
     icon: React.createElement(BarChart3, { className: "w-6 h-6" }),
-    details: ['Market strategy', 'Risk analysis', 'Logistical planning'],
+    details: ['Market intelligence', 'Risk mitigation strategies', 'Operational scaling'],
     image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661707/Conteiner_v2_lacqlq.jpg'
   }
 ];
@@ -73,11 +73,13 @@ export const SECTORS: Sector[] = [
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [
-  { number: '01', title: 'Initial Briefing', description: 'Understanding needs, volumes, and technical specifications.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Inspe%C3%A7%C3%A3o_com_tabletprancheta_v1_fkg5xw.jpg' },
-  { number: '02', title: 'Sourcing & Verification', description: 'Identification and due diligence of qualified manufacturers.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661251/Aperto_de_m%C3%A3o_assinatura_contrato_01_qyjbch.webp' },
-  { number: '03', title: 'Negotiation', description: 'Price and condition optimization directly in China.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661253/Inspe%C3%A7%C3%A3o_com_tabletprancheta_v2_d0zfaa.jpg' },
-  { number: '04', title: 'Production Monitoring', description: 'Rigorous supervision and quality inspections.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Armaz%C3%A9m_contentor_log%C3%ADstica_V1_m2yvvv.jpg' },
-  { number: '05', title: 'Logistics & Delivery', description: 'Document management and coordination to final destination.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661708/Conteiner_v3_kmsxnb.jpg' }
+  { number: '01', title: 'Inquiry / Entry', description: 'Initial requirement assessment and project scoping.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Inspe%C3%A7%C3%A3o_com_tabletprancheta_v1_fkg5xw.jpg' },
+  { number: '02', title: 'Requirement Structuring', description: 'Technical specification and volume validation.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661251/Aperto_de_m%C3%A3o_assinatura_contrato_01_qyjbch.webp' },
+  { number: '03', title: 'Supplier Matching', description: 'Identification of qualified manufacturers in China.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661253/Inspe%C3%A7%C3%A3o_com_tabletprancheta_v2_d0zfaa.jpg' },
+  { number: '04', title: 'Verification & Validation', description: 'Rigorous physical audits and compliance checks.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Armaz%C3%A9m_contentor_log%C3%ADstica_V1_m2yvvv.jpg' },
+  { number: '05', title: 'Negotiation', description: 'Direct price and condition optimization.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661708/Conteiner_v3_kmsxnb.jpg' },
+  { number: '06', title: 'Execution & Logistics', description: 'Production monitoring and supply chain coordination.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_4_il656j.jpg' },
+  { number: '07', title: 'Delivery', description: 'Final assurance and arrival at destination.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661707/Conteiner_v2_lacqlq.jpg' }
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -85,29 +87,29 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Carlos Mendes",
     role: "Procurement Director",
     location: "Horizonte Construction, Angola",
-    content: "Before Vena, we lost sleep wondering if the materials would arrive with the quality we paid for. Having someone in Shenzhen who actually goes to the factory and inspects the goods before loading changed our entire operation."
+    content: "Vena acts as our operational arm in Shenzhen. Their ability to execute factory audits and manage negotiations directly on the floor has transformed our supply chain reliability."
   },
   {
     name: "Ricardo Silva",
     role: "CEO",
     location: "TechMundo Distribution, Brazil",
-    content: "The hardest part of importing electronics isn't finding a supplier, it's finding one that won't cut corners on the second batch. Vena audited factories for us and saved us from a $100k mistake. I don't ship a single container without them now."
+    content: "We don't just source products; we execute trade operations. Vena's structured process saved us from significant risks by validating manufacturers before any commitment was made."
   },
   {
     name: "Amina Diop",
     role: "Operations Manager",
     location: "AgriTech Solutions, Senegal",
-    content: "Communicating with manufacturers used to be a nightmare due to time zones and language barriers. Vena's team took over the negotiation for our machinery, secured better payment terms, and handled all the logistics straight to Dakar."
+    content: "The complexity of international trade requires a partner who operates with precision. Vena managed our entire machinery procurement from requirement structuring to final delivery."
   }
 ];
 
 export const FAQS = [
-  { q: "How does the process work?", a: "We start with a briefing to understand your needs, followed by sourcing, verification, negotiation, production monitoring, and finally logistics coordination." },
-  { q: "What is the minimum order volume?", a: "We typically work with volumes starting from USD 50,000 per operation to ensure the viability of our supervision structure." },
-  { q: "Which sectors do you work with?", a: "We operate across 12 key industries, including construction, industrial equipment, solar energy, electronics, and more." },
-  { q: "How do you guarantee quality?", a: "Through physical audits of factories, rigorous inspections during production, and pre-shipment quality checks by our local team in Shenzhen." },
-  { q: "How is payment made to suppliers?", a: "We support the structuring of secure payments, including Letters of Credit (LC) and monitored international transfers." },
-  { q: "How long does the process take?", a: "Timelines vary by product and volume, but we provide a clear schedule during the initial briefing phase." },
-  { q: "Do you handle logistics?", a: "Yes, we coordinate the entire logistical chain, from the factory gate in China to the port of destination, including all necessary documentation." },
-  { q: "Can you help with custom branding?", a: "Absolutely. We facilitate OEM/ODM projects, helping you develop your own brand with verified manufacturers." }
+  { q: "How do you execute the verification process?", a: "We perform physical audits of factories in China, verifying licenses, production capacity, and export history to ensure full compliance with global standards." },
+  { q: "What is the minimum operational volume?", a: "We manage trade operations starting from USD 50,000 to maintain the high standard of our supervision and execution structure." },
+  { q: "Which global markets do you serve?", a: "While we have a strong presence in emerging markets like Africa and Latin America, we execute trade operations for clients worldwide from our base in Shenzhen." },
+  { q: "How do you ensure delivery assurance?", a: "Through continuous production monitoring and rigorous pre-shipment inspections executed by our local team on the factory floor." },
+  { q: "How are international payments managed?", a: "We structure secure payment protocols, including Letters of Credit (LC) and monitored transfers, ensuring financial security for all parties." },
+  { q: "What is the typical operational timeline?", a: "Timelines are established during the requirement structuring phase, based on production complexity and logistical requirements." },
+  { q: "Do you coordinate the entire supply chain?", a: "Yes, we manage everything from supplier identification to final delivery at the destination port, including all customs and documentation." },
+  { q: "Can you manage custom manufacturing (OEM)?", a: "Absolutely. We structure and supervise OEM/ODM projects, ensuring that manufacturers execute according to your exact technical specifications." }
 ];
