@@ -15,6 +15,7 @@ interface Service {
   description: string;
   icon: React.ReactNode;
   details: string[];
+  image: string;
 }
 
 interface Sector {
@@ -36,42 +37,48 @@ const SERVICES: Service[] = [
     title: 'Product Sourcing',
     description: 'Identification and selection of qualified suppliers across the entire Chinese industrial ecosystem.',
     icon: <Search className="w-6 h-6" />,
-    details: ['Market mapping', 'Production capacity analysis', 'Comparative cost reports']
+    details: ['Market mapping', 'Production capacity analysis', 'Comparative cost reports'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_1_kw2icw.jpg'
   },
   {
     id: 'verification',
     title: 'Supplier Verification',
     description: 'Rigorous due diligence and auditing of manufacturers to eliminate fraud and quality risks.',
     icon: <ShieldCheck className="w-6 h-6" />,
-    details: ['License verification', 'Physical factory audit', 'Export history analysis']
+    details: ['License verification', 'Physical factory audit', 'Export history analysis'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_2_wubtop.jpg'
   },
   {
     id: 'procurement',
     title: 'Procurement Support',
     description: 'Full support for the purchasing process, from initial order to financial settlement.',
     icon: <FileText className="w-6 h-6" />,
-    details: ['PO management', 'Secure payment control', 'Document compliance']
+    details: ['PO management', 'Secure payment control', 'Document compliance'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_3_xwrzkc.jpg'
   },
   {
     id: 'facilitation',
     title: 'Trade Facilitation',
     description: 'Smoothing the entire commercial chain, removing bureaucratic and logistical barriers.',
     icon: <Zap className="w-6 h-6" />,
-    details: ['Process optimization', 'Customs clearance', 'International certifications']
+    details: ['Process optimization', 'Customs clearance', 'International certifications'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661250/Armazen_V_4_il656j.jpg'
   },
   {
     id: 'negotiation',
     title: 'Negotiation & Representation',
     description: 'Direct negotiation on behalf of the client to ensure the best terms, prices, and priority.',
     icon: <Users className="w-6 h-6" />,
-    details: ['Cost reduction', 'Favorable payment terms', 'Local representation in Shenzhen']
+    details: ['Cost reduction', 'Favorable payment terms', 'Local representation in Shenzhen'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661707/Conteiner_v1_yktq6m.jpg'
   },
   {
     id: 'consultancy',
     title: 'Trade Consultancy',
     description: 'Strategic consultancy for expansion and structuring of international operations.',
     icon: <BarChart3 className="w-6 h-6" />,
-    details: ['Market strategy', 'Risk analysis', 'Logistical planning']
+    details: ['Market strategy', 'Risk analysis', 'Logistical planning'],
+    image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661707/Conteiner_v2_lacqlq.jpg'
   }
 ];
 
@@ -91,11 +98,11 @@ const SECTORS: Sector[] = [
 ];
 
 const PROCESS_STEPS = [
-  { number: '01', title: 'Initial Briefing', description: 'Understanding needs, volumes, and technical specifications.' },
-  { number: '02', title: 'Sourcing & Verification', description: 'Identification and due diligence of qualified manufacturers.' },
-  { number: '03', title: 'Negotiation', description: 'Price and condition optimization directly in China.' },
-  { number: '04', title: 'Production Monitoring', description: 'Rigorous supervision and quality inspections.' },
-  { number: '05', title: 'Logistics & Delivery', description: 'Document management and coordination to final destination.' }
+  { number: '01', title: 'Initial Briefing', description: 'Understanding needs, volumes, and technical specifications.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Inspe%C3%A7%C3%A3o_com_tabletprancheta_v1_fkg5xw.jpg' },
+  { number: '02', title: 'Sourcing & Verification', description: 'Identification and due diligence of qualified manufacturers.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661251/Aperto_de_m%C3%A3o_assinatura_contrato_01_qyjbch.webp' },
+  { number: '03', title: 'Negotiation', description: 'Price and condition optimization directly in China.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661253/Inspe%C3%A7%C3%A3o_com_tabletprancheta_v2_d0zfaa.jpg' },
+  { number: '04', title: 'Production Monitoring', description: 'Rigorous supervision and quality inspections.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Armaz%C3%A9m_contentor_log%C3%ADstica_V1_m2yvvv.jpg' },
+  { number: '05', title: 'Logistics & Delivery', description: 'Document management and coordination to final destination.', image: 'https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661708/Conteiner_v3_kmsxnb.jpg' }
 ];
 
 const TESTIMONIALS: Testimonial[] = [
@@ -135,12 +142,58 @@ const FAQS = [
 const Logo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-3 ${className}`}>
     <img 
-      src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661726/logo-horizontal-light_dw9oqm.svg" 
+      src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661697/logo-horizontal-light_dw9oqm.svg" 
       alt="Vena Trading Logo" 
       className="h-6 w-auto"
+      referrerPolicy="no-referrer"
     />
   </div>
 );
+
+const CurrencyConverter = () => {
+  const [rates, setRates] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const currencies = ['USD', 'CNY', 'EUR', 'AOA', 'ZAR', 'BRL'];
+
+  useEffect(() => {
+    const fetchRates = async () => {
+      try {
+        const res = await fetch('https://open.er-api.com/v6/latest/USD');
+        const data = await res.json();
+        setRates(data.rates);
+      } catch (err) {
+        console.error('Failed to fetch rates', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRates();
+  }, []);
+
+  if (loading) return <div className="animate-pulse h-20 bg-white/5 rounded-2xl" />;
+
+  return (
+    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl">
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-primary">Live Exchange Rates</h4>
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-[10px] text-muted-foreground uppercase font-mono">Real-time</span>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        {currencies.map(curr => (
+          <div key={curr} className="flex flex-col">
+            <span className="text-[10px] text-muted-foreground font-mono uppercase mb-1">{curr} / USD</span>
+            <span className="text-lg font-semibold text-foreground">
+              {rates ? rates[curr].toFixed(2) : '---'}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Button = ({ 
   children, 
@@ -464,7 +517,7 @@ export default function App() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden border border-white/10 relative group">
                 <img 
-                  src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661726/Reuni%C3%A3o_executiva_Africa_Asia_mw81za.webp" 
+                  src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661251/Reuni%C3%A3o_executiva_Africa_Asia_mw81za.webp" 
                   alt="Business Negotiation" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -481,8 +534,17 @@ export default function App() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-24 md:py-32 bg-white/5 border-y border-white/10 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-24 md:py-32 border-y border-white/10 relative overflow-hidden">
+        {/* Background Map */}
+        <div className="absolute inset-0 z-0 opacity-10">
+          <img 
+            src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_60/v1773661984/Opcional_mapa_cartogr%C3%A1fico_escuro_com_linhas_douradas_v_2_qp35zy.jpg" 
+            alt="Map Background" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <SectionHeading subtitle="The Problem" title="Sourcing from China is broken." align="center" />
           <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-lg">
             Businesses lose millions every year to failed procurement. The supply chain from China is full of friction, opacity and risk.
@@ -532,7 +594,14 @@ export default function App() {
       {/* Services Section */}
       <section id="services" className="py-24 md:py-32 relative">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading subtitle="What We Do" title="Six pillars of execution." />
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+            <div className="max-w-2xl">
+              <SectionHeading subtitle="What We Do" title="Six pillars of execution." />
+            </div>
+            <div className="lg:w-1/3">
+              <CurrencyConverter />
+            </div>
+          </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((service, i) => (
@@ -543,15 +612,22 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 onClick={() => setActiveService(service)}
-                className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 cursor-pointer flex flex-col h-full"
+                className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 cursor-pointer flex flex-col h-full relative overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  {service.icon}
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                  <img src={service.image} alt={service.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">{service.title}</h3>
-                <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
-                <div className="flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
-                  View Details <ArrowRight className="w-4 h-4" />
+                
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">{service.title}</h3>
+                  <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
+                  <div className="flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
+                    View Details <ArrowRight className="w-4 h-4" />
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -560,8 +636,17 @@ export default function App() {
       </section>
 
       {/* Sectors Section */}
-      <section id="sectors" className="py-24 md:py-32 bg-white/5 border-y border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="sectors" className="py-24 md:py-32 border-y border-white/10 relative overflow-hidden">
+        {/* Background Map */}
+        <div className="absolute inset-0 z-0 opacity-10">
+          <img 
+            src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_60/v1773661977/Opcional_mapa_cartogr%C3%A1fico_escuro_com_linhas_douradas_v_4_m6alum.jpg" 
+            alt="Map Background" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <SectionHeading subtitle="Sectors" title="Twelve sectors, one standard." align="center" />
           <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-lg">
             We source across the highest-demand categories. Each sector has a dedicated supplier portfolio, pre-vetted and audited.
@@ -575,7 +660,7 @@ export default function App() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="p-4 rounded-2xl bg-background border border-white/10 flex items-center gap-4 hover:border-primary/50 hover:bg-primary/5 transition-colors group"
+                className="p-4 rounded-2xl bg-background/80 backdrop-blur-sm border border-white/10 flex items-center gap-4 hover:border-primary/50 hover:bg-primary/5 transition-colors group"
               >
                 <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                   {sector.icon}
@@ -622,7 +707,7 @@ export default function App() {
                 viewport={{ once: true }}
                 className="col-span-2 rounded-xl overflow-hidden border border-white/10 aspect-[16/9] relative"
               >
-                <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661726/Interior_f%C3%A1brica_chinesa_v1_vng90w.webp" alt="Factory" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Interior_de_f%C3%A1brica_chinesa-Op%C3%A7%C3%A3o-01_fu11cv.jpg" alt="Factory" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-2xl text-xs font-mono uppercase tracking-widest border border-white/10">Factory · Shenzhen</div>
               </motion.div>
               <motion.div 
@@ -632,7 +717,7 @@ export default function App() {
                 transition={{ delay: 0.1 }}
                 className="rounded-xl overflow-hidden border border-white/10 aspect-square relative"
               >
-                <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661727/Firefly_supervis%C3%A3o_armaz%C3%A9m_v_1_n7d6lq.webp" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661253/Interior_de_f%C3%A1brica_chinesa-Op%C3%A7%C3%A3o-02_zyit9a.jpg" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -641,7 +726,7 @@ export default function App() {
                 transition={{ delay: 0.2 }}
                 className="rounded-xl overflow-hidden border border-white/10 aspect-square relative"
               >
-                <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661727/Armaz%C3%A9m_v_4_v5w8u8.webp" alt="Warehouse" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661247/Armazen_1_paziaw.jpg" alt="Warehouse" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </motion.div>
             </div>
           </div>
@@ -669,8 +754,9 @@ export default function App() {
                 transition={{ delay: i * 0.1 }}
                 className="relative z-10 flex flex-col items-center text-center group"
               >
-                <div className="w-24 h-24 rounded-2xl bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary group-hover:bg-primary/5 transition-colors shadow-xl">
-                  <span className="text-3xl font-bold text-primary opacity-50 group-hover:opacity-100 transition-opacity">{step.number}</span>
+                <div className="w-24 h-24 rounded-2xl bg-background border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary group-hover:bg-primary/5 transition-colors shadow-xl relative overflow-hidden">
+                  <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity" referrerPolicy="no-referrer" />
+                  <span className="text-3xl font-bold text-primary opacity-50 group-hover:opacity-100 transition-opacity relative z-10">{step.number}</span>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-foreground">{step.title}</h3>
                 <p className="text-sm text-muted-foreground">{step.description}</p>
@@ -681,8 +767,17 @@ export default function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 md:py-32 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-24 md:py-32 relative overflow-hidden">
+        {/* Background Map */}
+        <div className="absolute inset-0 z-0 opacity-10">
+          <img 
+            src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_60/v1773661981/Opcional_mapa_cartogr%C3%A1fico_escuro_com_linhas_douradas_v_6_tkwihp.jpg" 
+            alt="Map Background" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <SectionHeading subtitle="Testimonials" title="What our clients say." />
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -693,7 +788,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col"
+                className="p-8 rounded-2xl bg-background/60 backdrop-blur-md border border-white/10 flex flex-col"
               >
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, j) => <span key={j} className="text-primary text-lg">★</span>)}
@@ -715,13 +810,22 @@ export default function App() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 md:py-32 bg-white/5 border-y border-white/10">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-24 md:py-32 border-y border-white/10 relative overflow-hidden">
+        {/* Background Map */}
+        <div className="absolute inset-0 z-0 opacity-10">
+          <img 
+            src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_60/v1773661983/Opcional_mapa_cartogr%C3%A1fico_escuro_com_linhas_douradas_v_7_qbxk4h.jpg" 
+            alt="Map Background" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
           <SectionHeading subtitle="FAQ" title="Common questions." align="center" />
           
           <div className="space-y-4">
             {FAQS.map((item, i) => (
-              <details key={i} className="group bg-background border border-white/10 rounded-2xl overflow-hidden">
+              <details key={i} className="group bg-background/80 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
                 <summary className="p-6 cursor-pointer flex items-center justify-between font-semibold list-none hover:bg-white/5 transition-colors">
                   <span className="text-foreground">{item.q}</span>
                   <ChevronDown className="w-5 h-5 text-muted-foreground group-open:rotate-180 transition-transform" />
@@ -731,6 +835,58 @@ export default function App() {
                 </div>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Section */}
+      <section className="py-24 md:py-32 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <SectionHeading subtitle="The Founder" title="Visionary leadership in global trade." />
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Cynthia leads VENA Trading with a deep understanding of the complexities of international trade between China and Africa. Her presence in Shenzhen ensures that every client receives the highest level of operational excellence and transparency.
+              </p>
+              <div className="flex items-center gap-4 p-6 rounded-2xl bg-white/5 border border-white/10">
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                  <Linkedin className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Cynthia</h4>
+                  <p className="text-sm text-muted-foreground">Founder & CEO, VENA Trading</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative aspect-[4/5] rounded-xl overflow-hidden border border-white/10 group"
+            >
+              <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
+                <img 
+                  src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661741/Fundadora_Op%C3%A7%C3%A3o-03_a_Cynthia_Gostou_ffpgea.webp"
+                  alt="Founder Default"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <img 
+                  src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661743/Fundadora_Op%C3%A7%C3%A3o-01_mpvwvw.webp"
+                  alt="Founder Hover"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -801,6 +957,40 @@ export default function App() {
               </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://res.cloudinary.com/dwwgnumbe/image/upload/f_auto,q_auto/v1773661252/Armaz%C3%A9m_contentor_log%C3%ADstica_v2_jazib1.jpg" 
+            alt="CTA Background" 
+            className="w-full h-full object-cover opacity-20"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background"></div>
+        </div>
+        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-12 md:p-20"
+          >
+            <SectionHeading subtitle="Ready to Start?" title="Let's build your supply chain." align="center" />
+            <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
+              Stop guessing. Start executing. Join the businesses that trust VENA as their operational arm in China.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button className="w-full sm:w-auto !px-10 !py-4 text-sm">
+                Get a Free Quote
+              </Button>
+              <Button variant="outline" className="w-full sm:w-auto !px-10 !py-4 text-sm">
+                Schedule a Call
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 

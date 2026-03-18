@@ -183,8 +183,13 @@ export default function ChatWidget() {
               animate={{ opacity: 1, rotate: 0 }}
               exit={{ opacity: 0, rotate: -90 }}
               transition={{ duration: 0.15 }}
+              className="w-full h-full p-3"
             >
-              <MessageSquare className="w-6 h-6" />
+              <img 
+                src="https://res.cloudinary.com/dwwgnumbe/image/upload/v1773661696/symbol-main_wyiuqm.svg" 
+                alt="VT Symbol" 
+                className="w-full h-full object-contain brightness-0 invert"
+              />
             </motion.div>
           )}
         </AnimatePresence>
